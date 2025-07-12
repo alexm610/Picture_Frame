@@ -1,10 +1,8 @@
-/** @file sys_main.c 
-*   @brief Application main file
+/** @file htu.h
+*   @brief HTU Driver Definition File
 *   @date 11-Dec-2018
 *   @version 04.07.01
-*
-*   This file contains an empty main function,
-*   which can be used for the application.
+*   
 */
 
 /* 
@@ -42,39 +40,32 @@
 */
 
 
+
+#ifndef __HTU_H__
+#define __HTU_H__
+
+#include "reg_htu.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
 
-/* Include Files */
+/* HTU General Definitions */
 
-#include "sys_common.h"
-#include "gio.h"
+#define HTU1PARLOC		(*(volatile uint32 *)0xFF4E0200U)
+#define HTU2PARLOC		(*(volatile uint32 *)0xFF4C0200U)
+
+#define HTU1RAMLOC		(*(volatile uint32 *)0xFF4E0000U)
+#define HTU2RAMLOC		(*(volatile uint32 *)0xFF4C0000U)
+
 /* USER CODE BEGIN (1) */
 /* USER CODE END */
 
-/** @fn void main(void)
-*   @brief Application main function
-*   @note This function is empty by default.
-*
-*   This function is called after startup.
-*   The user can use this function to implement the application.
-*/
-
-/* USER CODE BEGIN (2) */
-/* USER CODE END */
-#define DELAY 7000000
-int main(void)
-{
-    int i;
-
-    gioInit();
-
-    for (;;) {
-        gioToggleBit(gioPORTB, 1);
-        for (i=0; i<DELAY; i++);
-    }
+#ifdef __cplusplus
 }
+#endif /*extern "C" */
 
-
-/* USER CODE BEGIN (4) */
-/* USER CODE END */
+#endif

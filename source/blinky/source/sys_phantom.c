@@ -1,10 +1,10 @@
-/** @file sys_main.c 
-*   @brief Application main file
+/** @file sys_phantom.c 
+*   @brief Phantom Interrupt Source File
 *   @date 11-Dec-2018
 *   @version 04.07.01
 *
-*   This file contains an empty main function,
-*   which can be used for the application.
+*   This file contains:
+*   - Phantom Interrupt Handler
 */
 
 /* 
@@ -42,39 +42,26 @@
 */
 
 
+#include "sys_common.h"
+#include "sys_vim.h"
+
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
 
-/* Include Files */
+/* Phantom Interrupt Handler */
 
-#include "sys_common.h"
-#include "gio.h"
 /* USER CODE BEGIN (1) */
 /* USER CODE END */
 
-/** @fn void main(void)
-*   @brief Application main function
-*   @note This function is empty by default.
-*
-*   This function is called after startup.
-*   The user can use this function to implement the application.
-*/
+#pragma CODE_STATE(phantomInterrupt, 32)
+#pragma INTERRUPT(phantomInterrupt, IRQ)
+#pragma WEAK(phantomInterrupt)
 
+void phantomInterrupt(void)
+{
 /* USER CODE BEGIN (2) */
 /* USER CODE END */
-#define DELAY 7000000
-int main(void)
-{
-    int i;
-
-    gioInit();
-
-    for (;;) {
-        gioToggleBit(gioPORTB, 1);
-        for (i=0; i<DELAY; i++);
-    }
 }
 
-
-/* USER CODE BEGIN (4) */
+/* USER CODE BEGIN (3) */
 /* USER CODE END */

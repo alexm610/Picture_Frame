@@ -1,14 +1,26 @@
-/** @file sys_main.c 
-*   @brief Application main file
-*   @date 11-Dec-2018
-*   @version 04.07.01
-*
-*   This file contains an empty main function,
-*   which can be used for the application.
-*/
+/**********************************************************************************************************************
+ *  FILE DESCRIPTION
+ *  -------------------------------------------------------------------------------------------------------------------
+ *         File:  ti_fee_cfg.h
+ *      Project:  Tms570_TIFEEDriver
+ *       Module:  TIFEEDriver
+ *    Generator:  HALCoGen
+ *
+ *  Description:  This file implements the TI FEE Api.
+ *---------------------------------------------------------------------------------------------------------------------
+ * Author:  Vishwanath Reddy
+ *---------------------------------------------------------------------------------------------------------------------
+ * Revision History
+ *---------------------------------------------------------------------------------------------------------------------
+ * Version        Date         Author               Change ID        Description
+ *---------------------------------------------------------------------------------------------------------------------
+ * 00.00.01       31Aug2012    Vishwanath Reddy     0000000000000    Initial Version
+ * 01.19.04		  05Dec2017    Prathap Srinivasan   HERCULES_SW-5082 Update version history.
+ *
+ *********************************************************************************************************************/
 
-/* 
-* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com 
+/*
+* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -41,40 +53,3 @@
 *
 */
 
-
-/* USER CODE BEGIN (0) */
-/* USER CODE END */
-
-/* Include Files */
-
-#include "sys_common.h"
-#include "gio.h"
-/* USER CODE BEGIN (1) */
-/* USER CODE END */
-
-/** @fn void main(void)
-*   @brief Application main function
-*   @note This function is empty by default.
-*
-*   This function is called after startup.
-*   The user can use this function to implement the application.
-*/
-
-/* USER CODE BEGIN (2) */
-/* USER CODE END */
-#define DELAY 7000000
-int main(void)
-{
-    int i;
-
-    gioInit();
-
-    for (;;) {
-        gioToggleBit(gioPORTB, 1);
-        for (i=0; i<DELAY; i++);
-    }
-}
-
-
-/* USER CODE BEGIN (4) */
-/* USER CODE END */

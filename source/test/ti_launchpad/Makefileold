@@ -1,0 +1,67 @@
+# Toolchain & flags
+CC      := /opt/ti-cgt-arm_20.2.5.LTS/bin/armcl
+LD      := /opt/ti-cgt-arm_20.2.5.LTS/bin/armcl
+
+# Source and build folders
+SRC_DIR := halcogen
+INC_DIR := halcogen/include
+BUILD_DIR := build
+
+# Output file
+OUT_ELF := $(BUILD_DIR)/testing_out.out
+
+# Source files (C and ASM)
+C_SRCS  := $(wildcard $(SRC_DIR)/source/*.c)
+ASM_SRCS:= $(wildcard $(SRC_DIR)/source/*.asm)
+
+# Object files, with .obj extension in build/
+OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.obj, $(C_SRCS)) \
+        $(patsubst $(SRC_DIR)/%.asm, $(BUILD_DIR)/%.obj, $(ASM_SRCS))
+
+DEPS := $(OBJS:.obj=.d_raw)
+
+# Compiler flags (example, adjust as needed)
+CFLAGS := -mv7R4 --code_state=32 --float_support=VFPv3D16 \
+          --include_path="$(SRC_DIR)" --include_path="$(INC_DIR)" --include_path="/opt/ti-cgt-arm_20.2.5.LTS/include" \
+          -g --diag_warning=225 --diag_wrap=off --display_error_number \
+          --enum_type=packed --abi=eabi \
+          --preproc_with_compile
+
+AFLAGS  := $(CFLAGS)
+
+# Linker flags (example, add your linker script and libraries)
+LDFLAGS := -mv7R4 --code_state=32 --float_support=VFPv3D16 -g \
+           --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed \
+           --abi=eabi \
+           -z -m"$(BUILD_DIR)/mapping.map" --heap_size=0x800 --stack_size=0x800 \
+           -i"/opt/ti-cgt-arm_20.2.5.LTS/lib" -i"/opt/ti-cgt-arm_20.2.5.LTS/include" \
+           --reread_libs --diag_wrap=off --display_error_number \
+           --warn_sections --xml_link_info="$(BUILD_DIR)/linkinfo.xml" --rom_model --be32 \
+           -o "$(OUT_ELF)"
+	    
+
+# Default target
+all: $(OUT_ELF)
+
+# Build output directory if missing
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Compile C source files
+$(BUILD_DIR)/%.obj: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) --preproc_dependency="$(BUILD_DIR)/$*.d_raw" --obj_directory=$(BUILD_DIR) $<
+
+# Assemble ASM source files
+$(BUILD_DIR)/%.obj: $(SRC_DIR)/%.asm | $(BUILD_DIR)
+	$(CC) $(AFLAGS) --preproc_dependency="$(BUILD_DIR)/$*.d_raw" --obj_directory=$(BUILD_DIR) $<
+
+# Link all objects into ELF
+$(OUT_ELF): $(OBJS) | $(BUILD_DIR)
+	$(LD) $(LDFLAGS) $(OBJS) $(SRC_DIR)/source/sys_link.cmd -l/opt/ti-cgt-arm_20.2.5.LTS/lib/rtsv7R4_T_be_v3D16_eabi.lib
+
+-include $(DEPS)
+# Clean build files
+clean:
+	rm -rf $(BUILD_DIR)/*
+
+.PHONY: all clean

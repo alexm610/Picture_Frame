@@ -1,14 +1,6 @@
-/** @file sys_main.c 
-*   @brief Application main file
-*   @date 11-Dec-2018
-*   @version 04.07.01
-*
-*   This file contains an empty main function,
-*   which can be used for the application.
-*/
 
 /* 
-* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -41,40 +33,38 @@
 *
 */
 
+#ifndef __MEM_MAP_H__
+#define __MEM_MAP_H__
+/*FEE*/
+#ifdef FEE_START_SEC_VAR_INIT_UNSPECIFIED
+#pragma SET_DATA_SECTION("FEE_DATA_SECTION")
+#undef FEE_START_SEC_VAR_INIT_UNSPECIFIED
+#endif
 
-/* USER CODE BEGIN (0) */
-/* USER CODE END */
+#ifdef FEE_STOP_SEC_VAR_INIT_UNSPECIFIED
+#pragma SET_DATA_SECTION()
+#undef FEE_STOP_SEC_VAR_INIT_UNSPECIFIED
+#endif
 
-/* Include Files */
+#ifdef FEE_START_SEC_CONST_UNSPECIFIED
+#pragma SET_DATA_SECTION("FEE_CONST_SECTION")
+#undef FEE_START_SEC_CONST_UNSPECIFIED
+#endif
 
-#include "sys_common.h"
-#include "gio.h"
-/* USER CODE BEGIN (1) */
-/* USER CODE END */
+#ifdef FEE_STOP_SEC_CONST_UNSPECIFIED
+#pragma SET_DATA_SECTION()
+#undef FEE_STOP_SEC_CONST_UNSPECIFIED
+#endif
 
-/** @fn void main(void)
-*   @brief Application main function
-*   @note This function is empty by default.
-*
-*   This function is called after startup.
-*   The user can use this function to implement the application.
-*/
+#ifdef FEE_START_SEC_CODE
+#pragma SET_CODE_SECTION("FEE_TEXT_SECTION")
+#undef FEE_START_SEC_CODE
+#endif
 
-/* USER CODE BEGIN (2) */
-/* USER CODE END */
-#define DELAY 7000000
-int main(void)
-{
-    int i;
-
-    gioInit();
-
-    for (;;) {
-        gioToggleBit(gioPORTB, 1);
-        for (i=0; i<DELAY; i++);
-    }
-}
+#ifdef FEE_STOP_SEC_CODE
+#pragma SET_CODE_SECTION()
+#undef FEE_STOP_SEC_CODE
+#endif
 
 
-/* USER CODE BEGIN (4) */
-/* USER CODE END */
+#endif  /* __MEM_MAP_H__ */

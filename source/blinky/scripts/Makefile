@@ -3,12 +3,12 @@ CC := /opt/ti-cgt-arm_20.2.5.LTS/bin/armcl
 LD := /opt/ti-cgt-arm_20.2.5.LTS/bin/armcl
 
 # Directories
-SRC_DIR := halcogen/source
-INC_DIR := halcogen/include
-BUILD_DIR := build
+SRC_DIR := ../source
+INC_DIR := ../include
+BUILD_DIR := ../build
 
 # Output file
-OUT_ELF := $(BUILD_DIR)/output.elf
+OUT_ELF := $(BUILD_DIR)/blinky.elf
 
 # Source files
 C_SRCS := $(wildcard $(SRC_DIR)/*.c)
@@ -29,8 +29,10 @@ CFLAGS := $(COMMON_FLAGS) --preproc_with_compile \
 LDFLAGS := $(COMMON_FLAGS) -z --heap_size=0x800 --stack_size=0x800 \
   -i/opt/ti-cgt-arm_20.2.5.LTS/lib -i/opt/ti-cgt-arm_20.2.5.LTS/include \
   --reread_libs --warn_sections --rom_model --be32 \
-  --xml_link_info=linkinfo.xml -m=mapfile.map \
+  --xml_link_info=$(BUILD_DIR)/linkinfo.xml -m=$(BUILD_DIR)/mapfile.map \
   -o $(OUT_ELF)
+
+FLASH_FLAGS := --verbose --flash --run
 
 # Default target
 all: $(OUT_ELF)
@@ -51,9 +53,12 @@ $(BUILD_DIR)/%.obj: $(SRC_DIR)/%.asm | $(BUILD_DIR)
 $(OUT_ELF): $(OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) $(SRC_DIR)/sys_link.cmd -lrtsv7R4_T_be_v3D16_eabi.lib
 
+# Flash
+flash: 
+	dslite $(FLASH_FLAGS) --config=../utilities/TMS570LS1224.ccxml $(BUILD_DIR)/blinky.elf
+
 # Clean
 clean:
 	rm -rf $(BUILD_DIR)/*
-	rm -f mapfile.map linkinfo.xml
 
 .PHONY: all clean
