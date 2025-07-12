@@ -48,7 +48,7 @@
 /* Include Files */
 
 #include "sys_common.h"
-#include "gio.h"
+
 /* USER CODE BEGIN (1) */
 /* USER CODE END */
 
@@ -62,17 +62,13 @@
 
 /* USER CODE BEGIN (2) */
 /* USER CODE END */
-#define DELAY 7000000
+
 int main(void)
 {
-    int i;
+/* USER CODE BEGIN (3) */
+/* USER CODE END */
 
-    gioInit();
-
-    for (;;) {
-        gioToggleBit(gioPORTB, 1);
-        for (i=0; i<DELAY; i++);
-    }
+    return 0;
 }
 
 
