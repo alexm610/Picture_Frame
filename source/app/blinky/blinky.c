@@ -1,15 +1,12 @@
 #include "blinky.h"
-#include "gio.h"
+#include "gio.h"   /* HALCoGen GPIO driver */
 
-void blinky_routine(void) {
+void Blinky(void)
+{
     int i;
-
-    gioSetBit(gioPORTB, 1, 1);
-    gioSetBit(gioPORTB, 2, 0);
-
-    for (;;) {
-        gioToggleBit(gioPORTB, 1);
-        gioToggleBit(gioPORTB, 2);
-        for (i=0; i<DELAY; i++);
+    for (;;)
+    {
+        gioToggleBit(gioPORTB, 2);  /* LED1 on LaunchPad */
+        for (i=0; i<DELAY_BLINKY; i++);
     }
 }
