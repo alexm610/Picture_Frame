@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/CMakeFiles/picotoolBuild"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/CMakeFiles/picotoolBuild.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/CMakeFiles/picotoolBuild-complete.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-build.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-configure.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-download.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-install.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-mkdir.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-patch.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-test.rule"
+		},
+		{
+			"file" : "/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/picotool/src/picotoolBuild-stamp/picotoolBuild-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"picotoolBuild"
+		],
+		"name" : "picotoolBuild"
+	}
+}

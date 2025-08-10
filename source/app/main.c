@@ -10,6 +10,8 @@ int main(void)
     _enable_interrupt_();
     gioInit();
     rtiInit();
+    i2cInit();
+    
     gioSetBit(gioPORTB, 1, 0);
     gioSetBit(gioPORTB, 2, 1);
     rtiEnableNotification(rtiNOTIFICATION_COMPARE0);
