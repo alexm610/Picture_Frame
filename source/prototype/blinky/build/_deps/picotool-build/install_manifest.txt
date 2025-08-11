@@ -1,7 +1,0 @@
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/picotool
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/picotoolTargets.cmake
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/picotoolTargets-release.cmake
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/picotoolConfig.cmake
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/picotoolConfigVersion.cmake
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/enc_bootloader.elf
-/home/alexmanak/math/Picture_Frame/source/prototype/blinky/build/_deps/picotool/enc_bootloader_mbedtls.elf

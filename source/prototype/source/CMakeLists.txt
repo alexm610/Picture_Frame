@@ -16,6 +16,7 @@ pico_sdk_init()
 
 add_executable(picture_frame
     picture_frame.c
+    lcd.c
     )
 
 # pull in common dependencies
@@ -23,6 +24,7 @@ target_link_libraries(picture_frame
     pico_stdlib
     hardware_i2c
     hardware_gpio
+    hardware_spi
 )
 pico_enable_stdio_usb(picture_frame 1)
 pico_enable_stdio_uart(picture_frame 0)
